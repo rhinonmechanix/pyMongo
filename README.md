@@ -1,9 +1,10 @@
 # pyMongo
 
-replace the mongoDB credentials to perform
+1. Run python main.py
 
-first database to compare
-mongodb+srv://<username>:<password>@cluster0.eu2qw.mongodb.net/<firstDatabaseName>?retryWrites=true&w=majority
-  
-second database to compare with
-mongodb+srv://<username>:<password>@cluster0.eu2qw.mongodb.net/<secondDatabaseName>?retryWrites=true&w=majority
+2. Enter the following details to perform:
+
+    1. First URL
+    2. First Database Name
+    3. Second URL
+    4. Second Database Name

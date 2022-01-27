@@ -5,17 +5,20 @@ coll2=[]
 a=[]
 b=[]
 
+firstUrl = input("Paste and edit your first url = ")
+firstDbName = input("First DB Name = ")
+secondUrl = input("Paste and edit your second url = ")
+secondDbName = input("Second DB Name = ") 
+
 def get_first_database():
 
-    URL = "mongodb+srv://test:testaccess@cluster0.eu2qw.mongodb.net/sample_geospatial?retryWrites=true&w=majority"
-    client = MongoClient(URL)
-    return client['sample_geospatial']
+    client = MongoClient(firstUrl)
+    return client[firstDbName]
 
 def get_second_database():
 
-    URL = "mongodb+srv://test:testaccess@cluster0.eu2qw.mongodb.net/sample_geospatial1?retryWrites=true&w=majority"
-    client = MongoClient(URL)
-    return client['sample_geospatial1']
+    client = MongoClient(secondUrl)
+    return client[secondDbName]
 
 if __name__ == "__main__":
     firstdb = get_first_database()
