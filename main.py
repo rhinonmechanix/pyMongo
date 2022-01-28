@@ -1,3 +1,4 @@
+from http import client
 import pymongo
 from pymongo import MongoClient
 coll1=[]
@@ -11,38 +12,32 @@ secondUrl = input("Paste and edit your second url = ")
 i = firstUrl.index("/", 20, len(firstUrl)-1)+1
 for x in firstUrl:
     if x == "?":
-        b = firstUrl.index(x)
-firstDbName = firstUrl[i:b]
+        c = firstUrl.index(x)
+firstDbName = firstUrl[i:c]
 
 j = secondUrl.index("/", 20, len(secondUrl)-1)+1
-print(j)
 for y in secondUrl:
     if y == "?":
-        b = secondUrl.index(y)
-secondDbName = secondUrl[j:b]
+        c = secondUrl.index(y)
+secondDbName = secondUrl[j:c]
 
-def get_first_database():
+def database():
+    client1 = MongoClient(firstUrl)
+    client2 = MongoClient(secondUrl)
+    return client1[firstDbName], client2[firstDbName]
 
-    client = MongoClient(firstUrl)
-    return client[firstDbName]
-
-def get_second_database():
-
-    client = MongoClient(secondUrl)
-    return client[secondDbName]
+client1, client2 = database()
 
 if __name__ == "__main__":
-    firstdb = get_first_database()
-    seconddb = get_second_database()
-    for coll in firstdb.list_collection_names():
+    for coll in client1.list_collection_names():
         coll1.append(coll)
-    for coll in seconddb.list_collection_names():
+    for coll in client2.list_collection_names():
         coll2.append(coll)
     if coll1 == coll2:
         print("The databases match")
         for x in range(len(coll1)):
-            first_collection_name = firstdb[str(coll1[x])]
-            second_collection_name = seconddb[str(coll2[x])]
+            first_collection_name = client1[str(coll1[x])]
+            second_collection_name = client2[str(coll2[x])]
             first_item_details = first_collection_name.find()
             second_item_details = second_collection_name.find()
             for first_item in first_item_details:
