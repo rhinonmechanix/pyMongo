@@ -24,7 +24,7 @@ secondDbName = secondUrl[j:c]
 def database():
     client1 = MongoClient(firstUrl)
     client2 = MongoClient(secondUrl)
-    return client1[firstDbName], client2[firstDbName]
+    return client1[firstDbName], client2[secondDbName]
 
 client1, client2 = database()
 
