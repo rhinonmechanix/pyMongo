@@ -6,9 +6,20 @@ a=[]
 b=[]
 
 firstUrl = input("Paste and edit your first url = ")
-firstDbName = input("First DB Name = ")
 secondUrl = input("Paste and edit your second url = ")
-secondDbName = input("Second DB Name = ") 
+
+i = firstUrl.index("/", 20, len(firstUrl)-1)+1
+for x in firstUrl:
+    if x == "?":
+        b = firstUrl.index(x)
+firstDbName = firstUrl[i:b]
+
+j = secondUrl.index("/", 20, len(secondUrl)-1)+1
+print(j)
+for y in secondUrl:
+    if y == "?":
+        b = secondUrl.index(y)
+secondDbName = secondUrl[j:b]
 
 def get_first_database():
 
